@@ -1,0 +1,51 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ */
+
+//@import 'cerulean';
+//@import 'spacelab';
+//@import 'amelia';
+//@import 'cosmo';
+
+// This is default size of refinery logo. Arghhh
+$sb_ref_logo: 29px;
+$sb_lineheight: 18px;
+$sb_height: $sb_lineheight * 4;
+
+#header { height: $sb_height; }
+
+// take care of menu item hover-selection
+.navbar .nav > li > a { padding: $sb_lineheight; }
+
+///////////////////////////////////////////////////////////////////////////////
+//  Refinery admin menu: images taken from app/assets/images/admin_sprite.png
+///////////////////////////////////////////////////////////////////////////////
+ul#main-menu-right > li > a {
+  &:hover { background-color: transparent; }
+  &#site_bar_refinery_cms_logo {
+    line-height: $sb_ref_logo; height: $sb_ref_logo; 
+    margin-top: $sb_ref_logo / 3; padding: 0; overflow: hidden; 
+    img { line-height: $sb_ref_logo; }
+    &:hover > img { margin-top: -$sb_ref_logo - 2px; } 
+  }
+}
+
+// control buttons
+@mixin admin_sprite($num,$size:24px) {
+  line-height: $size; height: $size; overflow: hidden; padding: 0; 
+  margin: $sb_ref_logo / 2; margin-left: $sb_ref_logo / 1.5; margin-right: 0;
+  img { margin-top: -2*$size*$num - 24px; } 
+  &:hover > img { margin-top: -2*$size*$num; }  
+}
+a#adminsite { @include admin_sprite (0); }
+a#logout { @include admin_sprite (1); }

@@ -1,0 +1,16 @@
+<% if refinery_user? && "#{controller_name}##{action_name}" != 'pages#preview' %>
+  <ul id="main-menu-right" class="nav pull-right">
+    <li><%= link_to image_tag("#{"http://refinerycms.com/images/" unless local_request?}refinery/logo-site-bar.png",:alt => "Refinery (tm) Content Manager"),
+            'http://refinerycms.com', :target => '_blank', :id => 'site_bar_refinery_cms_logo' %></li>
+    <li><%= #site_bar_switch_link 
+        link_to image_tag("admin_sprite.png", :alt => "Administer site"),
+                (if session.keys.map(&:to_sym).include?(:refinery_return_to) and session[:refinery_return_to].present?
+                  session[:refinery_return_to]
+                else
+                  refinery.admin_root_path
+                 end rescue refinery.admin_root_path), :id => 'adminsite'
+    -%></li>
+    <li><%= link_to image_tag("admin_sprite.png", :alt => "Log out"),
+            refinery.destroy_refinery_user_session_path, :id => 'logout' %></li>
+  </ul>
+<% end %>
