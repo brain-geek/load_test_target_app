@@ -34,3 +34,9 @@ gem 'refinerycms-i18n', '~> 2.0.0'
 #  gem 'refinerycms-inquiries', '~> 2.0.0'
 #  gem 'refinerycms-search', '~> 2.0.0'
 #  gem 'refinerycms-page-images', '~> 2.0.0'
+
+gem 'pry'
+gem 'pry-rails'
+
+gem 'factory_girl_rails'
+gem 'ffaker'
