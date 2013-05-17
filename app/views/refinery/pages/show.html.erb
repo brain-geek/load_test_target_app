@@ -1,1 +1,14 @@
 <%= render '/refinery/content_page' %>
+
+
+<h4>Related pages: </h4>
+
+<% if @page.children.present? %>
+  <div>
+    <ul>
+      <% @page.children.each do |p| %>
+        <li><%= link_to p.title, p %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

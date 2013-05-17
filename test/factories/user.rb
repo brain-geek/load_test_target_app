@@ -8,31 +8,19 @@ require Refinery.roots(:'refinery/authentication').join("app/models/refinery/rol
 
 FactoryGirl.define do
   factory :user, :class => Refinery::User do
-    sequence(:username) { |n| "refinery#{n}" }
-    sequence(:email) { |n| "refinery#{n}@refinerycms.com" }
-    password  "refinerycms"
-    password_confirmation "refinerycms"
+    sequence(:username) { |n| "user#{n}" }
+    sequence(:email) { |n| "user#{n}@refinerycms.com" }
+    password  "password"
+    password_confirmation "password"
   end
 
-  factory :refinery_user, :parent => :user do
-    roles { [ ::Refinery::Role[:refinery] ] }
+  factory :refinery_admin, :parent => :user do
+    username 'admin'
+    email 'admin@example.com' 
 
-    after_create do |user|
-      ::Refinery::Plugins.registered.each_with_index do |plugin, index|
-        user.plugins.create(:name => plugin.name, :position => index)
-      end
-    end
-  end
-
-  factory :refinery_superuser, :parent => :refinery_user do
-    roles { [ ::Refinery::Role[:refinery], ::Refinery::Role[:superuser] ]}
-  end
-
-  factory :refinery_translator, :parent => :user do
-    roles { [ ::Refinery::Role[:refinery], ::Refinery::Role[:translator] ] }
-
-    after_create do |user|
-      user.plugins.create(:name => 'refinery_pages', :position => 0)
+    after(:create) do |user, evaluator|
+      user.roles << ::Refinery::Role[:refinery]
+      user.roles << ::Refinery::Role[:superuser]
     end
   end
 end
