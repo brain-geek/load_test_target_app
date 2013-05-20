@@ -4,4 +4,8 @@ This app was intended to use with Toad - website load testing project.
 
 == Setting up empty VM in ubuntu
 
-    sudo vmbuilder kvm ubuntu --suite precise --flavour virtual --arch i386 -o --libvirt qemu:///system --ip 192.168.0.201 --hostname myvm --user brain --name user --pass password --addpkg unattended-upgrades --addpkg openssh-server
+    sudo vmbuilder kvm ubuntu --suite precise --flavour virtual --arch i386 -o --libvirt qemu:///system --user brain --name user --pass password --addpkg unattended-upgrades --addpkg openssh-server --addpkg htop --ip 192.168.0.201 --hostname myvm 
+
+== Configuring node in chef
+
+    knife bootstrap 192.168.0.201 -x brain -N first --sudo
