@@ -41,3 +41,5 @@ gem 'pry-rails'
 
 gem 'factory_girl_rails'
 gem 'ffaker'
+
+gem 'unicorn'
