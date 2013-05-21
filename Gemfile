@@ -41,3 +41,5 @@ gem 'factory_girl_rails'
 gem 'ffaker'
 
 gem 'unicorn'
+
+gem 'simple-rails-deploy'
