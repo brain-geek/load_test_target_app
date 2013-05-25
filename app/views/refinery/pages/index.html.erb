@@ -1,0 +1,9 @@
+<h1>Sitemap (for both browsing and passing to siedge</h1>
+<ul>
+  <% @pages.each do |page| %>
+    <li>
+      <% url = page.url.is_a?(String) ? "http://#{request.host_with_port}#{page.url}" : url_for(page.url.merge({:only_path => false})) %>
+      <%= link_to url, url %>
+    </li>
+  <% end %>
+</ul>

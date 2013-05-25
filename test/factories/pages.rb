@@ -9,7 +9,6 @@ FactoryGirl.define do
     ] }
 
     factory :root_page do
-      path '/'
       link_url '/'
       title 'Главная'
       deletable false
