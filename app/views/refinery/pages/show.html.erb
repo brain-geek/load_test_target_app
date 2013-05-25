@@ -1,3 +1,5 @@
+<% ::Refinery::Setting.find_or_set(:lag_level, 0).to_i.times { a = ((5 ** 200) ** -200); nil } %>
+
 <%= render '/refinery/content_page' %>
 
 <h4>Related pages: </h4>

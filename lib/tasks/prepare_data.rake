@@ -4,10 +4,17 @@ root_pages = (ENV['ROOT_PAGES'] || 3).to_i
 first_level_pages = (ENV['FIRST_LEVEL_PAGES'] || 10).to_i
 second_level_pages = (ENV['SECOND_LEVEL_PAGES'] || 30).to_i
 
+lag_level = (ENV['LAG_LEVEL'] || 0).to_i
+
 task "prepare_data" => :environment do
+  puts 'Recreating database'
+
   Rake::Task["db:drop"].invoke
   Rake::Task["db:create"].invoke
   Rake::Task["db:migrate"].invoke
+
+  puts 'Creating settings'
+  Refinery::Setting.set :lag_level, lag_level
 
   puts 'Creating admin and "/" page'
 

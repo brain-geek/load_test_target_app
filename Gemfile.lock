@@ -182,6 +182,8 @@ GEM
       dragonfly (~> 0.9.8)
       rack-cache (>= 0.5.3)
       refinerycms-core (= 2.0.10)
+    refinerycms-settings (2.0.2)
+      refinerycms-core (~> 2.0.1)
     routing-filter (0.3.1)
       actionpack
     rvm-capistrano (1.2.7)
@@ -244,6 +246,7 @@ DEPENDENCIES
   rails (= 3.2.13)
   refinerycms (~> 2.0.0)
   refinerycms-i18n (~> 2.0.0)
+  refinerycms-settings (~> 2.0.0)
   sass-rails (~> 3.2.3)
   simple-rails-deploy
   sqlite3
