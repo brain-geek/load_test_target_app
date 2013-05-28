@@ -3,9 +3,6 @@ module Refinery
     before_filter :find_page, :set_canonical, :except => [:preview, :index]
     before_filter :find_page_for_preview, :only => [:preview, :index]
 
-    # Save whole Page after delivery
-    after_filter { |c| c.write_cache? }
-
     # This action is usually accessed with the root path, normally '/'
     def home
       render_with_templates?
@@ -103,12 +100,6 @@ module Refinery
 
     def set_canonical
       @canonical = refinery.url_for @page.canonical if @page.present?
-    end
-
-    def write_cache?
-      if Refinery::Pages.cache_pages_full && !refinery_user?
-        cache_page(response.body, File.join('', 'refinery', 'cache', 'pages', request.path.sub("//", "/")).to_s)
-      end
     end
   end
 end

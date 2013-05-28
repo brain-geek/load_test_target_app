@@ -1,12 +1,12 @@
 #encoding: utf-8
 
-root_pages = (ENV['ROOT_PAGES'] || 3).to_i
-first_level_pages = (ENV['FIRST_LEVEL_PAGES'] || 10).to_i
-second_level_pages = (ENV['SECOND_LEVEL_PAGES'] || 30).to_i
-
-lag_level = (ENV['LAG_LEVEL'] || 0).to_i
-
 task "prepare_data" => :environment do
+  root_pages = (ENV['ROOT_PAGES'] || 3).to_i
+  first_level_pages = (ENV['FIRST_LEVEL_PAGES'] || 10).to_i
+  second_level_pages = (ENV['SECOND_LEVEL_PAGES'] || 30).to_i
+
+  lag_level = (ENV['LAG_LEVEL'] || 0).to_i
+
   puts 'Recreating database'
 
   Rake::Task["db:drop"].invoke
@@ -14,9 +14,14 @@ task "prepare_data" => :environment do
   Rake::Task["db:migrate"].invoke
 
   puts 'Creating settings'
+
+  #fixme
+  require(Rails.root + 'app/models/refinery/setting.rb')
+
   Refinery::Setting.set :lag_level, lag_level
 
   puts 'Creating admin and "/" page'
+
 
   FactoryGirl.create :refinery_admin
   root_page = FactoryGirl.create :root_page
