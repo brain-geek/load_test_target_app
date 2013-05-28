@@ -1,4 +1,3 @@
 <% @pages.each do |page| %>
-  <% url = page.url.is_a?(String) ? "http://#{request.host_with_port}#{page.url}" : url_for(page.url.merge({:only_path => false})) %>
-  <%= url %>
+<%= page.url.is_a?(String) ? "http://#{request.host_with_port}#{page.url}" : url_for(page.url.merge({:only_path => false})) %>
 <% end %>
