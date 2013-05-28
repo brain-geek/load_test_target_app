@@ -42,6 +42,7 @@ module Refinery
 
     def index
       @pages = Refinery::Page.live.includes(:parts).order(:lft)
+      render :layout => false
     end
 
   protected
