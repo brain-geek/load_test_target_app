@@ -14,14 +14,10 @@ task "prepare_data" => :environment do
   Rake::Task["db:migrate"].invoke
 
   puts 'Creating settings'
-
-  #fixme
-  require(Rails.root + 'app/models/refinery/setting.rb')
-
+  
   Refinery::Setting.set :lag_level, lag_level
 
   puts 'Creating admin and "/" page'
-
 
   FactoryGirl.create :refinery_admin
   root_page = FactoryGirl.create :root_page
