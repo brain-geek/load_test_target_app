@@ -5,11 +5,15 @@
 <h4>Related pages: </h4>
 
 <% if @page.children.present? %>
-  <div>
-    <ul>
-      <% @page.children.each do |p| %>
-        <li><%= link_to p.title, url_for(p.url.merge({:only_path => false})) %></li>
-      <% end %>
-    </ul>
-  </div>
+  <% pages = @page.children %>
+<% else %>
+  <% pages = Refinery::Page.order("RANDOM()").first(10) %>
 <% end %>
+
+<div>
+  <ul>
+    <% pages.each do |page| %>
+      <li><%= link_to page.title, page.url.is_a?(String) ? "http://#{request.host_with_port}#{page.url}" : url_for(page.url.merge({:only_path => false})) %></li>
+    <% end %>
+  </ul>
+</div>
