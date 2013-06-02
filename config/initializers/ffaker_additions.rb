@@ -54,5 +54,28 @@ module Faker
 
       s
     end
+
+    def table(rows = 3)
+      s = "<table>
+<thead>
+<tr>
+<th>#{word.capitalize!}</th>
+<th>#{word.capitalize!}</th>
+<th>#{word.capitalize!}</th>
+<th>#{word.capitalize!}</th>
+</tr>
+</thead>
+<tbody>"
+      rows.times do
+        s << "<tr>
+<td>#{words(1).capitalize!}</td>
+<td>#{words(1).capitalize!}</td>
+<td>#{words(1).capitalize!}</td>
+<td>#{words(2).capitalize!}</td>
+</tr>"
+      end
+      s << "</tbody>
+</table>"
+    end    
   end
 end
